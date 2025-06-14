@@ -77,6 +77,52 @@ const getStyles = ({isActive}) => ({
 <NavLink style={getStyles} to="/">Home</NavLink>
 ```
 
+#### Programmatic Navigation
+- Using the `useNavigate` hook for programmatic navigation:
+```jsx
+import { useNavigate } from 'react-router-dom';
+
+function MyComponent() {
+  const navigate = useNavigate();
+
+  const handleNavigation = () => {
+    navigate('/cart');  // Basic navigation
+    navigate(-1);       // Go back one step
+    navigate(1);        // Go forward one step
+    
+    // Navigation with state
+    navigate('/cart', { 
+      state: { fromHome: true }
+    });
+  };
+}
+```
+
+Key features of useNavigate:
+- Enables programmatic navigation in response to events (clicks, form submissions, etc.)
+- Can navigate to specific routes using paths
+- Supports relative and absolute paths
+- Can pass state data to the target route
+- Allows navigating back/forward in history using numbers (-1, 1)
+- Returns a function that can be called anywhere in your component
+
+Example from our Home component:
+```jsx
+const Home = () => {
+  const navigate = useNavigate();
+
+  const onGoCart = () => {
+    navigate('/cart');
+  };
+
+  return (
+    <div className="home">
+      <h1>Welcome to the Home Page</h1>
+      <button onClick={onGoCart}>Go to cart</button>
+    </div>
+  );
+}
+
 ## Project Structure
 
 ```
@@ -129,3 +175,5 @@ npm run dev
 - Creating a multi-page application with React Router
 - Using React Router's components (`BrowserRouter`, `Routes`, `Route`, `Link`, `NavLink`)
 - Implementing active link styles with NavLink
+- Using programmatic navigation with useNavigate hook
+- Handling navigation events and state management during routing
