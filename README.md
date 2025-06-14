@@ -39,11 +39,42 @@ createRoot(document.getElementById("root")).render(
 
 ### 3. Navigation
 
-- Using `Link` component for navigation between pages:
+#### Using Link
+- Basic navigation using `Link` component:
 ```jsx
 <Link to="/">Home</Link>
 <Link to="/about">About</Link>
 <Link to="/cart">Cart</Link>
+```
+
+#### Using NavLink
+- Enhanced navigation with `NavLink` for styling active links:
+```jsx
+<NavLink 
+  style={({ isActive }) => ({
+    color: isActive ? 'blue' : 'black'
+  })} 
+  to="/"
+>
+  Home
+</NavLink>
+```
+
+Key features of NavLink:
+- Automatically adds an `active` class when the link matches the current URL
+- Provides an `isActive` boolean in style/className functions
+- Perfect for navigation menus where you want to highlight the current page
+- Can customize active styles using inline styles or CSS classes
+
+Example with custom styling:
+```jsx
+const getStyles = ({isActive}) => ({
+  color: isActive ? 'blue' : 'black',
+  textDecoration: 'none',
+  fontSize: '20px'
+});
+
+<NavLink style={getStyles} to="/">Home</NavLink>
 ```
 
 ## Project Structure
@@ -65,7 +96,8 @@ src/
 
 ### App.jsx
 - Main component that sets up the routing configuration
-- Contains navigation links and route definitions
+- Contains navigation links using NavLink for active state styling
+- Defines route configurations
 
 ### Page Components
 - `Home`: Landing page component
@@ -95,5 +127,5 @@ npm run dev
 - Understanding React Router's core concepts
 - Implementing client-side routing in React applications
 - Creating a multi-page application with React Router
-- Using React Router's components (`BrowserRouter`, `Routes`, `Route`, `Link`)
-
+- Using React Router's components (`BrowserRouter`, `Routes`, `Route`, `Link`, `NavLink`)
+- Implementing active link styles with NavLink
