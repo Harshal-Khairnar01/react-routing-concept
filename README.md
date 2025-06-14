@@ -122,6 +122,7 @@ const Home = () => {
     </div>
   );
 }
+```
 
 
 ### 4. Protected Routes
